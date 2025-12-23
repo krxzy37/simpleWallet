@@ -1,0 +1,12 @@
+# IDE files
+.idea/
+*.iml
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Vendor folder (если будете использовать vendor)
+vendor/
