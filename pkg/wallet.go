@@ -9,12 +9,12 @@ type Waller interface {
 }
 type BitcoinWallet struct {
 	name    string
-	balance int
+	balance float64
 }
 
 type UsdWallet struct {
 	name    string
-	balance int
+	balance float64
 }
 
 var (
