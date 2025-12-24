@@ -10,6 +10,7 @@ import (
 
 func main() {
 
+	var myWallet pkg.Waller
 	var usdWallName string
 	var bitWallName string
 
@@ -44,11 +45,11 @@ func main() {
 				if err != nil {
 				}
 
-				usdWallet := pkg.UsdWallet{
+				myWallet = &pkg.UsdWallet{
 					Name: usdWallName,
 				}
 
-				fmt.Println("Your wallet was created", usdWallet)
+				fmt.Println("Your wallet was created", myWallet)
 
 			} else if chose == "b" {
 				fmt.Println("Write name of usd wallet")
@@ -56,17 +57,24 @@ func main() {
 				if err != nil {
 				}
 
-				bitWallName := pkg.BitcoinWallet{
+				myWallet = &pkg.BitcoinWallet{
 					Name: bitWallName,
 				}
 
-				fmt.Println("Your wallet was created", bitWallName)
+				fmt.Println("Your wallet was created", myWallet)
 
 			}
 
 		case '2':
 
+			myWallet.Deposit(0.0)
+
 		case '3':
+			myWallet.Withdraw(0.0)
+
+		case '4':
+			myWallet.GetBalance()
+
 		case '0':
 			fmt.Println("Exiting the program....")
 			os.Exit(0)
