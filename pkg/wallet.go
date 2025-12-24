@@ -5,16 +5,16 @@ import "errors"
 type Waller interface {
 	Deposit(amount float64)
 	Withdraw(amount float64)
-	Balance() float64
+	GetBalance() float64
 }
 type BitcoinWallet struct {
-	name    string
-	balance float64
+	Name    string
+	Balance float64
 }
 
 type UsdWallet struct {
-	name    string
-	balance float64
+	Name    string
+	Balance float64
 }
 
 var (

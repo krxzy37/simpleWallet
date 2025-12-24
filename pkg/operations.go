@@ -24,7 +24,7 @@ func (u *UsdWallet) Deposit(amount float64) {
 		return
 	}
 
-	u.balance += amount
+	u.Balance += amount
 
 	return
 }
@@ -48,7 +48,7 @@ func (b *BitcoinWallet) Deposit(amount float64) {
 		return
 	}
 
-	b.balance += amount
+	b.Balance += amount
 
 	return
 }
@@ -63,12 +63,12 @@ func (b *BitcoinWallet) Withdraw(amount float64) {
 	}
 
 	amount, err = strconv.ParseFloat(sAmount, 64)
-	if b.balance < amount {
+	if b.Balance < amount {
 		fmt.Println("Error:", ErrInsufficientFunds)
 		return
 	}
 
-	b.balance -= amount
+	b.Balance -= amount
 
 }
 
@@ -82,31 +82,31 @@ func (u *UsdWallet) Withdraw(amount float64) {
 	}
 
 	amount, err = strconv.ParseFloat(sAmount, 64)
-	if u.balance < amount {
+	if u.Balance < amount {
 		fmt.Println("Error:", ErrInsufficientFunds)
 		return
 	}
 
-	u.balance -= amount
+	u.Balance -= amount
 
 }
 
-func (u *UsdWallet) Balance() float64 {
+func (u *UsdWallet) GetBalance() float64 {
 
 	if u == nil {
 		fmt.Println("Error: ", ErrNoBalance)
 		return 0.0
 	}
 
-	return u.balance
+	return u.Balance
 }
 
-func (b *BitcoinWallet) Balance() float64 {
+func (b *BitcoinWallet) GetBalance() float64 {
 
 	if b == nil {
 		fmt.Println("Error: ", ErrNoBalance)
 		return 0.0
 	}
 
-	return b.balance
+	return b.Balance
 }
