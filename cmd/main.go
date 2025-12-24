@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/zetamatta/go-getch"
-	_ "github.com/zetamatta/go-getch"
 )
 
 func main() {
