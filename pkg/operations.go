@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func (u UsdWallet) Deposit(amount float64) {
+func (u *UsdWallet) Deposit(amount float64) {
 
 	var sAmount string
 	fmt.Println("Enter the deposit amount: ")
@@ -29,7 +29,7 @@ func (u UsdWallet) Deposit(amount float64) {
 	return
 }
 
-func (b BitcoinWallet) Deposit(amount float64) {
+func (b *BitcoinWallet) Deposit(amount float64) {
 
 	var sAmount string
 	fmt.Println("Enter the deposit amount: ")
@@ -53,7 +53,7 @@ func (b BitcoinWallet) Deposit(amount float64) {
 	return
 }
 
-func (b BitcoinWallet) Withdraw(amount float64) {
+func (b *BitcoinWallet) Withdraw(amount float64) {
 
 	var sAmount string
 	fmt.Println("Enter the deposit amount: ")
@@ -64,7 +64,7 @@ func (b BitcoinWallet) Withdraw(amount float64) {
 
 	amount, err = strconv.ParseFloat(sAmount, 64)
 	if b.balance < amount {
-		fmt.Println("Error:", ErrAmountBelowZero)
+		fmt.Println("Error:", ErrInsufficientFunds)
 		return
 	}
 
@@ -72,7 +72,7 @@ func (b BitcoinWallet) Withdraw(amount float64) {
 
 }
 
-func (u UsdWallet) Withdraw(amount float64) {
+func (u *UsdWallet) Withdraw(amount float64) {
 
 	var sAmount string
 	fmt.Println("Enter the deposit amount: ")
@@ -83,10 +83,30 @@ func (u UsdWallet) Withdraw(amount float64) {
 
 	amount, err = strconv.ParseFloat(sAmount, 64)
 	if u.balance < amount {
-		fmt.Println("Error:", ErrAmountBelowZero)
+		fmt.Println("Error:", ErrInsufficientFunds)
 		return
 	}
 
 	u.balance -= amount
 
+}
+
+func (u *UsdWallet) Balance() float64 {
+
+	if u == nil {
+		fmt.Println("Error: ", ErrNoBalance)
+		return 0.0
+	}
+
+	return u.balance
+}
+
+func (b *BitcoinWallet) Balance() float64 {
+
+	if b == nil {
+		fmt.Println("Error: ", ErrNoBalance)
+		return 0.0
+	}
+
+	return b.balance
 }
