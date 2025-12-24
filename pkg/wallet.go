@@ -20,4 +20,5 @@ type UsdWallet struct {
 var (
 	ErrAmountBelowZero   = errors.New("the sum must be greater than zero")
 	ErrInsufficientFunds = errors.New("insufficient funds")
+	ErrNoBalance         = errors.New("you have not created a balance")
 )
